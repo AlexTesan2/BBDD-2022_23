@@ -1,0 +1,31 @@
+erDiagram
+CA{
+    Sttring nombre PK
+    String organismo_parques            
+    int num_parques
+    bigint supericie_total_parques
+}
+PARQUE_NATURAL{
+    int cod_parque_natural PK
+    String nombre
+    Date fecha_inaguracion
+}
+CA}|--|{PARQUE_NATURAL: tener
+PARQUE_NATURAL||--|{PERSONAL:tener
+PERSONAL{
+    String DNI
+}
+PERSONAL||--o|GESTION:DT
+PERSONAL||--o|VIGILANCIA:DT
+PERSONAL||--o|MANTENIMIENTO:DT
+PERSONAL||--o|INVESTIGACION:DT
+VIGILANCIA||--||VEHICULO:tener
+VEHICULO{
+    String matricul PK
+    String tipo
+}
+PARQUE_NATURAL||--|{AREAS:tener
+AREAS||--|{ESPECIES:tener
+ESPECIES||--o|ANIMAL:DT
+ESPECIES||--o|VEGETAL:DT
+ESPECIES||--o|MINERAL:DT

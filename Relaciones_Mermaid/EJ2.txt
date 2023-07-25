@@ -1,0 +1,61 @@
+erDiagram
+%%%Escuela bellas artes
+PARTICIPANTES{
+    int numero_orden PK
+    String nombre
+    String direccion
+    String telefono 
+    String otros_datos
+}
+PROFESIONALES{
+    String empresa_donde_trabajan
+    String nivel_estudios
+}
+AFICIONADOS{
+    Date fecha_comienzo
+}
+PROVINCIA{
+    String nombre PK
+    int numero_centros_ensennanza
+}
+DIBUJOS{
+    int numero_correlativo PK
+}
+REGISTROS{
+    String titulo PK
+    Date dia_comienzo
+    Date dia_finalizacion
+    String tiempo_empleado_por_aficionado
+}
+AULAS{
+    String nombre_aula PK
+    int metros_cuadrados
+    String caracteristicas
+}
+MATERIALES{
+    String codigo PK
+    String nombre
+}
+RESIDENCIAS{
+    String cif PK
+    String nombre 
+    String direccion
+    String telefono
+}
+FECHAS{
+    Date fecha_entrada
+    Date fecha-salida
+}
+
+PARTICIPANTES||--|| PROFESIONALES: DT
+PARTICIPANTES||--|| AFICIONADOS: DT
+PROVINCIA||--o{PARTICIPANTES: enviar
+AFICIONADOS}|--|| DIBUJOS: realizar
+PROFESIONALES||--|| DIBUJOS: realizar
+DIBUJOS||--|| REGISTROS: tener
+DIBUJOS}o--|| AULAS: realizar
+DIBUJOS}o--|{MATERIALES: emplear
+PARTICIPANTES}|--||FECHAS: durante
+FECHAS}o--||RESIDENCIAS: alojar
+RESIDENCIAS||--o{AULAS : contar_con
+

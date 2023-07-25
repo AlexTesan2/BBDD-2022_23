@@ -1,0 +1,90 @@
+erDiagram
+ESCENA{
+    String id PK
+    String nombre_descriptivo
+    String archivo_q_contiene_imagen
+    Double  pitch
+    Double  yaw
+}
+HOTSPOTS{
+    String id PK
+    String titulo_descriptivo
+    String texto
+    Double  pitch
+    Double  yaw
+    String tipo
+}
+SALTO{
+    String escena
+    Double  pitch
+    Double  yaw
+}
+AUDIODESCRIPCION{
+    String id PK
+    String descripcion
+    String ruta_relativa_archivo_mp3
+    String tipo
+}
+VIDEO{
+    String id PK
+    String ruta PK
+    String descripcion
+}
+PANELES{
+    String imagen_destacada PK
+} 
+IMAGENES{
+    String id PK
+    String titulo PK
+    String ruta
+    String texto
+    Date fecha_subida
+}
+MAPAS{
+    String id PK
+    String ruta
+    String titulo
+    String codigo_escena_inicial
+    String top
+    String left
+    String mapaInicial
+}
+LIBROS{
+    String id PK
+    String titulo
+    String autor
+    String editorial
+    String lugar_edicion
+    Dta fecha_editorial
+    String ISBN
+    Boolean historico
+    Boolean apaisado
+}
+USUARIOS{
+    String id PK
+    String nombre
+    String apellidos
+    String email
+    String password
+    String tipo
+}
+ARCHIVO_PDF{
+    int id
+    String ruta
+    String panel_asociado
+}
+
+ESCENA||--|{HOTSPOTS:  tener
+HOTSPOTS||--||SALTO: DT
+HOTSPOTS||--||AUDIO: DT
+HOTSPOTS||--||VIDEO: DT
+HOTSPOTS||--||PANELES: DT
+HOTSPOTS||--||ESCALERA: DT
+AUDIO||--|| AUDIODESCRIPCION: DP
+AUDIO||--|| VISITA_GUIADA: DP
+PANELES}|--|{IMAGENES: tener
+ESCENA||--o{PANELES: tener
+ARCHIVO_PDF|o--|| PANELES: asociar
+ESCENA}o--||MAPAS: tener
+VISITA_GUIADA||--|{AUDIODESCRIPCION: ser
+ESCENA}|--|{ VISITA_GUIADA: dar
